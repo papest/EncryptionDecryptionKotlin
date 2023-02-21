@@ -1,18 +1,20 @@
 package encryptdecrypt
 
+const val ALPHABET_LENGTH = 26
 fun main() {
-    println(encrypt("we found a treasure!"))
+    println(shiftEncrypt(readln(), readln().toInt()))
 }
 
-fun encrypt(input: String): String {
+fun shiftEncrypt(input: String, key: Int): String {
     val result = mutableListOf<Char>()
     for (ch in input) {
         if (ch in 'a'..'z') {
-            result.add('a' + ('z' - ch))
+            result.add('a' + (ch - 'a' + key) % ALPHABET_LENGTH)
         } else {
             result.add(ch)
-        }
 
+        }
     }
     return result.joinToString("")
+
 }
